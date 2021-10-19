@@ -1,5 +1,10 @@
 <?php
-use PHPHtmlParser\Dom;
+use App\Modules\Scrappers\MangaListScrapper;
+use App\Modules\Scrappers\MangaInfoScrapper;
+use App\Modules\Scrappers\MangaChapterScrapper;
+use App\Modules\Scrappers\MangaChapterImageScrapper;
+use App\Modules\Downloaders\MangeImageDownloader;
+use GuzzleHttp\Client;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,32 +19,21 @@ use PHPHtmlParser\Dom;
 
 $router->get('/', function () use ($router) {
 
-    $httpClient = new \GuzzleHttp\Client(['verify' => 'C:\wamp64\cacert.pem']);
-    $page = 1;
-    $data = [];
-    for($i = 1; $i <= $page; $i++) {
-        $response = $httpClient->get('https://mangakakalot.com/manga_list');
-        $htmlString = (string) $response->getBody();
-        $dom = new Dom;
-        $dom->loadStr($htmlString);
-        $contents = $dom->find('.list-truyen-item-wrap');
-        /*
-        .then( $ => $('.list-truyen-item-wrap').toArray().map(element => {
-        const manga = $(element).children().first();
-        const title = manga.attr('title');
-        const image = manga.children().first().attr('src');
-        const chapter = manga.next().next();
-        const info = chapter.attr('title');
-        const link = chapter.attr('href');
-        return { manga : { title, image }, chapter : { info, link } }
-        */
-        foreach($contents as $content) {
-            $manga = $content->firstChild();
-            $title = $manga->getAttribute('title');
-            dump($content->innerHtml);
-            $image = $manga->firstChild()->getAttribute('src');
-        }
-    }
+    /*
+    $scrapper = app(MangaListScrapper::class);
+    $scrapper->setUrl('https://mangakakalot.com/manga_list');
+    $scrapper->start();
+    */
+    $scrapper = app(MangaInfoScrapper::class);
+    $scrapper->setUrl('https://readmanganato.com/manga-bf978762');
+    dump($scrapper->start());
+    /*
+    $scrapper = app(MangaChapterImageScrapper::class);
+    $scrapper->setUrl('https://mangakakalot.com/chapter/rt927298/chapter_12');
+    $scrapper->start();*/
+    /*
+    $downloader = app(MangeImageDownloader::class);
+    $image = $downloader->downloadAsPng("https://s8.mkklcdnv6temp.com/mangakakalot/r2/rt927298/chapter_12_the_first_compliment/1.jpg");
 
-    return $router->app->version();
+    return $downloader->imgToHtml($image);*/
 });
