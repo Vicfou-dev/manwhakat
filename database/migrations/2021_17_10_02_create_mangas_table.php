@@ -22,7 +22,7 @@ class CreateMangasTable extends Migration
             $table->string("inner_link", 512)->default('');
             $table->string("status", 64);
             $table->text("description");
-            $table->date("last_updated");
+            $table->datetime("last_updated");
             $table->timestamps();
         });
     }

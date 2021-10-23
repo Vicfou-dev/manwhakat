@@ -52,10 +52,10 @@ class MangaChapterImageScrapper extends Scrapper
             }
 
             $alt = $image->getAttribute('alt');
-            $alt = trim(str_replace('Mangakakalot.com', '', $alt));
+            $alt = trim(preg_replace('/(Mangakakalot.com|MangaNato.com)/', '', $alt));
 
             $title = $image->getAttribute('title');
-            $title = trim(str_replace('Mangakakalot.com', '', $title));
+            $title = trim(str_replace('/(Mangakakalot.com|MangaNato.com)/', '', $title));
 
             $images[] = array('src' => $src, 'alt' => $alt, 'title' => $title);
         }

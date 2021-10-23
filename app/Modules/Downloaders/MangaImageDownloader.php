@@ -2,7 +2,7 @@
 namespace App\Modules\Downloaders;
 use GuzzleHttp\Client;
 
-class MangeImageDownloader {
+class MangaImageDownloader {
 
     private $client;
 
@@ -13,14 +13,26 @@ class MangeImageDownloader {
     }
 
 
-    public function downloadAsPng($url) {
+    public function downloadToBase64($url) {
         $response = $this->client->get($url);
         $body = $response->getBody()->getContents();
-        $this->image = $this->bodyToPng($body);
+        $this->image = $this->bodyToBase64($body);
         return $this->image;
     }
 
-    private function bodyToPng($body) {
+    public function downloadToJpg($url) {
+        $response = $this->client->get($url);
+        $body = $response->getBody()->getContents();
+        $this->image = $this->bodyToJpg($body);
+        return $this->image;
+    }
+
+    private function bodyToJpg($body) {
+        $source = imagecreatefromstring($body);
+        return $source;
+    }
+
+    private function bodyToBase64($body) {
         $base64 = base64_encode($body);
         $mime = "image/jpeg";
         $img = ('data:' . $mime . ';base64,' . $base64);

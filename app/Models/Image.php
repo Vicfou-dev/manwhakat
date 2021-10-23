@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Modules\Downloaders\MangaImageDownloader;
 
 class Image extends Model
 {
@@ -39,5 +40,11 @@ class Image extends Model
         $instance->fill($values)->save();
 
         return $instance;
+    }
+
+    public function getOuterLinkAttribute($url)
+    {
+        $link = url("api/image/?url=$url");
+        return $link;
     }
 }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="../css/index.css" rel="stylesheet" type="text/css">
+    <link href="../css/slider.css" rel="stylesheet" type="text/css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="signin">
+        <div class="header">
+            <div class="container-flex">
+                <div class="svg logo"></div>
+                <div class="title">ManwhaKat</div>
+            </div>
+        </div>
+        <div class="slides">
+                <div class="container">
+                    <div class="main">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" placeholder="">
+                        </div>
+                        <div class="button">SIGN IN</div>
+                        <div class="forgot-password">Forgot password?</div>
+                    </div>
+                    <div class="footer" id="signup"> Don't have an account? Sign Up </div>
+                </div>
+                <div class="container">
+                    <div class="main">
+                        <div class="svg arrow-back" id="back-signin"></div>
+                        <div class="form-group">
+                            <label for="usename">Username</label>
+                            <input type="usename" class="form-control" id="usename" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" placeholder="">
+                        </div>
+                        <div class="button">SIGN UP</div>
+                    </div>
+                    <div class="footer" id="signin">You already have an account? Sign In </div>
+            <div>    
+        </div>
+    </div>
+</body>
+</html>
+<script type="module">
+    import Slider from './js/slider.js';
+    new Slider(['signin','back-signin'], 'signup')
+    console.log('in');
+</script>

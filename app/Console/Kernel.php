@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\MangaScrappingCommand::class
+        Commands\MangaScrappingCommand::class,
+        Commands\MangaScrappingOneCommand::class
     ];
 
     /**

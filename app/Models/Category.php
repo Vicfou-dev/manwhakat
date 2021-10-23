@@ -22,7 +22,7 @@ class Category extends Model
      * @var array
      */
     protected $hidden = [
-        
+        'created_at', 'updated_at', 'pivot'
     ];
 
     /**
@@ -39,5 +39,10 @@ class Category extends Model
         $instance->fill($values)->save();
 
         return $instance;
+    }
+
+    public function mangas() 
+    {
+        return $this->hasMany(Manga::class);
     }
 }

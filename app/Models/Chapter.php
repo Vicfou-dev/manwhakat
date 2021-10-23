@@ -13,7 +13,7 @@ class Chapter extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'outer_link', 'inner_link', 'upload'
+        'name', 'outer_link', 'inner_link', 'upload', 'numerotation'
     ];
 
     /**
@@ -22,8 +22,9 @@ class Chapter extends Model
      * @var array
      */
     protected $hidden = [
-        
+        'created_at', 'updated_at', 'pivot'
     ];
+
 
     public function images()
     {   

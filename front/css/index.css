@@ -1,0 +1,268 @@
+:root{
+    --white: #ffffff;
+    --white-secondary: #f4f4f4;
+    --dark : #28243c;
+    --dark-secondary : #2d2c46;
+    --light-dark: #383350;
+    --main: #4c58e7;
+    --main-secondary : #6682ed;
+    --main-dark : #2e3177;
+    --grey : #595773;
+}
+html,body {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    font-family: "Open Sans";
+    background: linear-gradient(to bottom right,var(--dark-secondary), var(--dark));
+}
+input {
+    font-family: "Open Sans";
+}
+.background {
+    width: 100vw;
+    position: absolute;
+}
+.header {
+    background: linear-gradient(to bottom right,var(--main-secondary), var(--main));
+    height: 25vh;
+    position: relative;
+    clip-path: polygon(0 0, 0 75%, 100% 55%, 100% 100%, 100% 0);
+    width: 100vw;
+}
+.container-header {
+    height: 40%;
+    width: 90%;
+    justify-content: space-between;
+    margin: auto;
+    display: flex;
+    color: white;
+    font-size:18px;
+    align-items: center;
+    z-index: -1;
+}
+
+.container-flex
+{
+    display: flex;
+}
+#back-signin {
+    width: 20px;
+    margin-bottom: 30px;
+}
+.svg {
+    background-color: var(--white);
+    vertical-align: bottom;
+    mask-size: 100%;
+    min-height: 16px;
+    min-width: 16px;
+}
+
+.svg.arrow-back {
+    -webkit-mask: url(../image/left-arrow.svg) no-repeat center;
+    -webkit-mask-size: 100%;
+    mask-size: 100%;
+    mask: url(../image/left-arrow.svg) no-repeat center;
+}
+
+.svg.logo {
+    background: url(../image/logo-108x144.png) no-repeat center;
+    height: 108px;
+    width: 108px;
+}
+
+.svg.setting{
+    -webkit-mask: url(../image/setting.svg) no-repeat center;
+    -webkit-mask-size: 100%;
+    mask-size: 100%;
+    mask: url(../image/setting.svg) no-repeat center;
+    transform: rotate(90deg);
+}
+
+.button {
+    background: linear-gradient(to bottom right,var(--main-secondary), var(--main));
+    width: 80%;
+    border-radius: 50px;
+    text-align: center;
+    color: var(--white);
+    font-size: 14px;
+    padding: 12px 0;
+}
+
+.signin.container-flex
+{
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: inherit;
+}
+
+.signin .title
+{
+    color: var(--white);
+    margin-top: 48px;
+    font-size: 22px;
+}
+
+.signin .footer, .signin .forgot-password, .signin label
+{
+    color: var(--grey);
+    font-size: 15px;
+}
+
+.signin .main
+{
+    margin: 0 auto;
+    min-width: 90%;
+}
+
+.signin .footer
+{
+    margin: auto;
+    text-align: center;
+}
+
+.signin .main .button
+{
+    margin: auto;
+    margin-top: 40px;
+}
+
+.signin .forgot-password
+{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-group
+{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+.signin label {
+
+}
+
+.signin input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--white);
+    border-bottom: 1px solid var(--grey);
+    padding: 10px 5px;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.signin input:focus {
+    border-bottom: 1px solid var(--white);
+}
+
+.signin .header .container-flex {
+    width: 85%;
+    margin: auto;
+}
+
+.container-manga-list {
+    margin:0 5vw;
+    margin-top: -80px;
+}
+
+.container-manga-chapter {
+    margin-top: -100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.category-container, .author-container, .manga-chapter-list {
+    color: var(--white-secondary);
+    width: 225px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.category-container > span,.author-container > span {
+    color: var(--grey);
+}
+
+
+.chapter-container {
+  background: linear-gradient(to bottom right,var(--main-secondary), var(--main));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  justify-content: space-between;
+}
+.chapter-container > span + span {
+  background: var(--white-secondary);
+  -webkit-background-clip: inherit;
+  -webkit-text-fill-color: inherit;
+}
+
+.manga-container {
+    height: 25vh;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5vw;
+}
+
+.manga-image-container {
+    height: 100%;
+    object-fit: cover;
+    min-width: 35vw;
+    border-radius: 5px;
+}
+
+.manga-info-container {
+    display: flex;
+    flex-direction: column;
+    padding: 2.5vw 5vw;
+}
+
+.manga-title {
+    color: var(--white);
+    text-overflow: ellipsis;
+    font-size: 20px;
+    height: 3.5vh;
+}
+
+.manga-author {
+    color: var(--grey);
+    font-size: 14px;
+    height: 4.5vh;
+}
+
+.manga-description {
+    color: var(--white-secondary);
+    font-weight: 100;
+    font-size: 14px;
+    height: 14vh;
+    overflow: hidden;
+    text-align: justify;
+    -webkit-line-clamp: 6;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+@media screen and (min-width: 640px) {
+    .signin .main
+    {
+        min-width: 60%;
+    }
+}
+
+@media screen and (min-width: 340px) {
+    .signin .header .container-flex
+    {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 400px) {
+    .signin .header .container-flex
+    {
+        width: 70%;
+    }
+}

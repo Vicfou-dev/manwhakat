@@ -20,7 +20,22 @@ class MangaChapterScrapper extends Scrapper
             $htmlString = (string) $response->getBody();
             $dom = $this->createDomFromString($htmlString);
         }
-        $contents = $dom->find('.chapter-list .row');
+
+        $param = parse_url($this->getUrl());
+        $host = $param['host'];
+
+        switch($host) {
+            case 'readmanganato.com' : 
+                $class = ".row-content-chapter .a-h";
+                break;
+            case 'mangakakalot.com' : 
+                $class = ".chapter-list .row";
+                break;
+            default :
+                $class = '';
+        }
+
+        $contents = $dom->find($class);
 
         $data = [];
         foreach($contents as $content) 
@@ -35,9 +50,14 @@ class MangaChapterScrapper extends Scrapper
     
     private function parse($content) : array
     {
-        $chapter = $content->firstChild()->nextSibling()->firstChild();
+        $chapter = $content->firstChild()->nextSibling();
+        $link = $chapter->getAttribute('href');
+        if($link == null) {
+            $chapter = $content->firstChild()->nextSibling()->firstChild();
+        }
         $link = $chapter->getAttribute('href');
         $title = $chapter->getAttribute('title');
+        $numerotation = $chapter->innerHtml;
 
         $upload = $content->getChildren()[5];
         $time = $upload->getAttribute('title');
@@ -48,6 +68,6 @@ class MangaChapterScrapper extends Scrapper
             $time = date('M-d-Y h:m', $now->getTimestamp());
         }
 
-        return array('title' => $title, 'link' => $link, 'time' => $time);
+        return array('title' => $title, 'link' => $link, 'time' => $time, 'numerotation' => $numerotation);
     }
 }

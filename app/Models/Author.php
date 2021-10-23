@@ -22,7 +22,7 @@ class Author extends Model
      * @var array
      */
     protected $hidden = [
-        
+        'created_at', 'updated_at', 'pivot'
     ];
 
     /**
@@ -39,5 +39,10 @@ class Author extends Model
         $instance->fill($values)->save();
 
         return $instance;
+    }
+
+    public function mangas() 
+    {
+        return $this->hasMany(Manga::class);
     }
 }

@@ -2,18 +2,12 @@
 namespace App\Modules\Scrappers;
 
 
-class MangaListScrapper extends Scrapper
+class MangaSearchScrapper extends Scrapper
 {
     
-    public function start(int $pageNumber = 1) 
+    public function start() 
     {
-        $data = [];
-        for($i = 1; $i <= $pageNumber; $i++) {
-            $param = array('page' => $i);
-            $url = $this->getUrl() . "?" . http_build_query($param) ;
-            $result = $this->scrapping($url);
-            $data = array_merge($data, $result);
-        }
+        $data = $this->scrapping($this->getUrl());
 
         return $data;
 
@@ -24,7 +18,7 @@ class MangaListScrapper extends Scrapper
         $response = $this->client->get($url);
         $htmlString = (string) $response->getBody();
         $dom = $this->createDomFromString($htmlString);
-        $contents = $dom->find('.list-truyen-item-wrap');
+        $contents = $dom->find('.story_item');
 
         $data = [];
         foreach($contents as $content) 
@@ -40,17 +34,13 @@ class MangaListScrapper extends Scrapper
     private function parse($content) : array
     {
         $manga = $content->firstChild()->nextSibling();
-        $title = $manga->getAttribute('title');
         $list = $manga->getAttribute('href');
+        $title = $manga->firstChild()->nextSibling()->getAttribute('alt');
         $image = $manga->firstChild()->nextSibling()->getAttribute('src');
 
-        $chapter = $manga->nextSibling()->nextSibling()->nextSibling()->nextSibling();
-        $info = $chapter->getAttribute('title');
-        $link = $chapter->getAttribute('href');
 
         $manga   = array('title' => $title,'image' => $image, 'list'  => $list);
-        $chapter = array('info' => $info, 'link' => $link);
 
-        return array('manga' => $manga, 'chapter' => $chapter );
+        return array('manga' => $manga);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use GuzzleHttp\Client;
 use Illuminate\Support\ServiceProvider;
+use App\Modules\Downloaders\MangaImageDownloader;
 use App\Modules\Scrappers\Scrapper;
 
 class AppServiceProvider extends ServiceProvider
@@ -34,5 +35,8 @@ class AppServiceProvider extends ServiceProvider
             return new Client($args);
         });
 
+        $this->app->singleton(MangaImageDownloader::class,function() {
+            return new MangaImageDownloader();
+        });
     }
 }

@@ -21,7 +21,8 @@ class CreateChaptersTable extends Migration
             $table->string('name', 512)->unique();
             $table->string("outer_link", 512)->default('');
             $table->string("inner_link", 512)->default('');
-            $table->date("upload");
+            $table->string("numerotation", 256)->default('');
+            $table->datetime("upload");
             $table->foreign('manga_id')->references('id')->on('mangas')->onDelete('cascade');
             $table->timestamps();
         });

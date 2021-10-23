@@ -22,7 +22,7 @@ class Manga extends Model
      * @var array
      */
     protected $hidden = [
-        
+        'created_at', 'updated_at', 'pivot'
     ];
 
     public function authors()
@@ -33,6 +33,16 @@ class Manga extends Model
     public function categories()
     {   
         return $this->belongsToMany(Category::class, 'mangas_categories');
+    }
+
+    public function authorss()
+    {   
+        return $this->hasMany(Author::class, 'mangas_authors');
+    }
+
+    public function categoriess()
+    {   
+        return $this->hasMany(Category::class, 'mangas_categories');
     }
 
     public function chapters()
